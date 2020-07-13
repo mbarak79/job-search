@@ -4,22 +4,24 @@ from .models import Candidate, Job, Candidate, Resume, User
 
 
 
-class CandidateForm(forms.ModelForm):
-    class Meta:
-        model = User
-
-        fields = ['username', 'email']
-
 
 class JobForm(forms.ModelForm):
-    
+    title               = forms.CharField(max_length=200, widget=forms.TextInput({ "placeholder": ""}))
+    experience          =forms.FileField(widget=forms.TextInput({ "placeholder": ""}))
+
+
     class Meta:
         model = Job
-        fields = ['title', 'description', 'job_type', 'vacancy', 'salary', 'experience', 'image', 'country', 'city']
-
+        fields = ['title', 'description', 'job_type', 'vacancy',
+            'salary', 'experience', 'image', 'city']
 
 
 class ResumeForm(forms.ModelForm):
+    name          = forms.CharField(max_length=200, widget=forms.TextInput({"placeholder": ""}))
+    email         = forms.EmailField(max_length=200, widget=forms.TextInput({ "placeholder": ""}))
+    url           = forms.URLField(required=False, widget=forms.TextInput({ "placeholder": ""}))
+    cv            =forms.FileField(widget=forms.TextInput({ "placeholder": ""}))
+
     class Meta:
         model = Resume
 

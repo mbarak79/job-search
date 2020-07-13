@@ -54,7 +54,7 @@
                         <option data-display="Location">Location</option>
                         {% for job in jobs %}
 
-                        <option value="1">{{ job.country }}</option>
+                        <option value="1">{{ job.city }}</option>
 
                         {% endfor %}
 
@@ -79,52 +79,9 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="popular_search d-flex align-items-center">
-                    <span>Popular Search:</span>
-                    <ul>
-                        <li><a href="#">Design & Creative</a></li>
-                        <li><a href="#">Marketing</a></li>
-                        <li><a href="#">Administration</a></li>
-                        <li><a href="#">Teaching & Education</a></li>
-                        <li><a href="#">Engineering</a></li>
-                        <li><a href="#">Software & Web</a></li>
-                        <li><a href="#">Telemarketing</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <!--/ catagory_area -->
-
-<!-- popular_catagory_area_start  -->
-
-<div class="popular_catagory_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section_title mb-40">
-                    <h3>Popolar Categories</h3>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            {% for pop in pop_cat %}
-            <div class="col-lg-4 col-xl-3 col-md-6">
-                <div class="single_catagory">
-                    <a href="jobs.html">
-                        <h4>{{pop.POPCat}}</h4>
-                    </a>
-                    <p> <span>{{POPCat.count}}</span> Available position</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-<!-- popular_catagory_area_end  -->
 
 <!-- job_listing_area_start  -->
 <div class="job_listing_area">
@@ -132,12 +89,12 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="section_title">
-                    <h3>Job Listing</h3>
+                    <h3>Recent Jobs</h3>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="brouse_job text-right">
-                    <a href="jobs.html" class="boxed-btn4">Browse More Job</a>
+                    <a href="{% url 'jobs:home' %}" class="boxed-btn4">Browse More Job</a>
                 </div>
             </div>
         </div>
@@ -158,7 +115,7 @@
                                 </a>
                                 <div class="links_locat d-flex align-items-center">
                                     <div class="location">
-                                        <p> <i class="fa fa-map-marker"></i> {{job.country}} {{job.city}}</p>
+                                        <p> <i class="fa fa-map-marker"></i>{{job.city}}</p>
                                     </div>
                                     <div class="location">
                                         <p> <i class="fa fa-clock-o"></i> {{job.type}}</p>
@@ -185,41 +142,90 @@
 <!-- job_listing_area_end  -->
 
 <!-- featured_candidates_area_start  -->
-<div class="featured_candidates_area">
+<section>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section_title text-center mb-40">
-                    <h3>Featured Candidates</h3>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-
-            <div class="col-lg-12">
-
-                <div class="candidate_active owl-carousel">
-                    {% for candidate in candidates %}
-
-                    <div class="single_candidates text-center">
-
-                        <div class="thumb">
-                            <img src="{{candidate.image.url}}" alt="">
-                        </div>
-                        <a href="#">
-                            <h4>{{candidate.user}}</h4>
-                        </a>
-                        <p>{{candidate.job_name}}</p>
+    	<div class="row">
+    	    
+    	    <h1 class="text-center"><span>Featured Candidates</span></h1>
+    		<div class="col-md-4">
+    		    <div class="card profile-card-1">
+    		        <img src="https://images.pexels.com/photos/946351/pexels-photo-946351.jpeg?w=500&h=650&auto=compress&cs=tinysrgb" alt="profile-sample1" class="background"/>
+    		        <img src="https://randomuser.me/api/portraits/women/20.jpg" alt="profile-image" class="profile"/>
+                    <div class="card-content">
+                    <h2>Savannah Fields<small>Engineer</small></h3>
+                    <div class="icon-block"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i class="fa fa-google-plus"></i></a></div>
                     </div>
-                    {% endfor %}
                 </div>
-
-            </div>
-
-        </div>
-
+                <p class="mt-3 w-100 float-left text-center"></p>
+    		</div>
+    		
+    		<div class="col-md-4">
+    		    <div class="card profile-card-2">
+                    <div class="card-img-block">
+                        <img class="img-fluid" src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="Card image cap">
+                    </div>
+                    <div class="card-body pt-5">
+                        <img src="https://randomuser.me/api/portraits/men/64.jpg" alt="profile-image" class="profile"/>
+                        <h5 class="card-title">Landon Hunt</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="icon-block"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i class="fa fa-google-plus"></i></a></div>
+                    </div>
+                </div>
+                <p class="mt-3 w-100 float-left text-center"></p>
+    		</div>
+    		
+    		<!--Profile Card 3-->
+    		<div class="col-md-4">
+    		    <div class="card profile-card-3">
+    		        <div class="background-block">
+    		            <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="profile-sample1" class="background"/>
+    		        </div>
+    		        <div class="profile-thumb-block">
+    		            <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile-image" class="profile"/>
+    		        </div>
+    		        <div class="card-content">
+                    <h2>Justin Mccoy<small>Designer</small></h3>
+                    <div class="icon-block"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i class="fa fa-google-plus"></i></a></div>
+                    </div>
+                </div>
+                <p class="mt-3 w-100 float-left text-center"></p>
+    		</div>
+    		
+    		<!--Profile Card 4-->
+    		<div class="col-md-4 mt-4">
+    		    <div class="card profile-card-4">
+                    <div class="card-img-block">
+                        <div class="info-box">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <img class="img-fluid" src="https://images.unsplash.com/uploads/141103282695035fa1380/95cdfeef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1274&q=80" alt="Card image cap">
+                    </div>
+                    <div class="card-body pt-5">
+                        <img src="https://randomuser.me/api/portraits/women/14.jpg" alt="profile-image" class="profile"/>
+                        <h5 class="card-title text-center">Gail Schmidt</h5>
+                        <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="icon-block text-center"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i class="fa fa-google-plus"></i></a></div>
+                    </div>
+                </div>
+                <p class="mt-3 w-100 float-left text-center"></p>
+    		</div>
+    		
+    		<!--Profile Card 5-->
+    		<div class="col-md-4 mt-4">
+    		    <div class="card profile-card-5">
+    		        <div class="card-img-block">
+    		            <img class="card-img-top" src="https://images.unsplash.com/photo-1517832207067-4db24a2ae47c" alt="Card image cap">
+    		        </div>
+                    <div class="card-body pt-0">
+                    <h5 class="card-title">Florence Garza</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+                <p class="mt-3 w-100 float-left text-center"></p>
+    		</div>
+    		
+    	</div>
     </div>
-</div>
+</section>
 <!-- featured_candidates_area_end  -->
 
 <div class="top_companies_area">
@@ -232,23 +238,27 @@
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="brouse_job text-right">
-                    <a href="jobs.html" class="boxed-btn4">Browse More Job</a>
+                    <a href="{% url 'jobs:home' %}" class="boxed-btn4">Browse More Job</a>
                 </div>
             </div>
         </div>
         <div class="row">
+            
+            {% for company in companies %}
+                
             <div class="col-lg-4 col-xl-3 col-md-6">
                 <div class="single_company">
                     <div class="thumb">
-                        <img src="{% static 'img/svg_icon/5.svg' %}" alt="">
+                        <img src="{{company.image.url}}" alt="">
                     </div>
                     <a href="jobs.html">
-                        <h3>Snack Studio</h3>
+                        <h3>{{company.name}}</h3>
                     </a>
                     <p> <span>50</span> Available position</p>
                 </div>
             </div>
-
+                
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -261,14 +271,14 @@
                 <div class="searching_text">
                     <h3>Looking for a Job?</h3>
                     <p>We provide online instant cash loans with quick approval </p>
-                    <a href="#" class="boxed-btn3">Browse Job</a>
+                    <a href="{% url 'jobs:home' %}" class="boxed-btn3">Browse Job</a>
                 </div>
             </div>
             <div class="col-lg-5 offset-lg-1 col-md-6">
                 <div class="searching_text">
                     <h3>Looking for a Expert?</h3>
                     <p>We provide online instant cash loans with quick approval </p>
-                    <a href="#" class="boxed-btn3">Post a Job</a>
+                    <a href="{% url 'jobs:add_job' %}" class="boxed-btn3">Post a Job</a>
                 </div>
             </div>
         </div>
