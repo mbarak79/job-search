@@ -30,7 +30,7 @@
             <form method="GET">
               {% bootstrap_form my_filter.form %}
               <div class="reset_btn">
-                <button class="boxed-btn3 w-100" type="submit">Search</button>
+                <button class="boxed-btn3 w-100 mt-3" type="submit">Search</button>
               </div>
             </form>
           </div>
@@ -47,9 +47,11 @@
                 <div class="serch_cat d-flex justify-content-end">
                   <select>
                     <option data-display="Most Recent">Most Recent</option>
-                    <option value="1">Marketer</option>
-                    <option value="2">Wordpress </option>
-                    <option value="4">Designer</option>
+                    
+                    {% for job in list|slice:"3" %}
+                    <option value="1">{{job.title}}</option>
+                    {% endfor %}  
+
                   </select>
                 </div>
               </div>

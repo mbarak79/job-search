@@ -68,16 +68,17 @@ class Job(models.Model):
         
 
 class Candidate(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
-    job = models.ForeignKey(Job, related_name='Apply_job', on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    url = models.URLField()
-    cv = models.FileField(upload_to="Apply/")
-    cover_letter = models.TextField(max_length=1000)
-    created = models.DateTimeField(auto_now=True)
-    image   = models.ImageField(upload_to='Candidate_profile/', blank=True, null=True)
-    job_name = models.CharField(max_length=20, blank=True, null=True)
+    user            = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    job             = models.ForeignKey(Job, related_name='Apply_job', on_delete=models.CASCADE)
+    name            = models.CharField(max_length=100)
+    email           = models.EmailField()
+    url             = models.URLField()
+    cv              = models.FileField(upload_to="Apply/")
+    cover_letter    = models.TextField(max_length=1000)
+    description     = models.TextField(max_length=1000, null=True)
+    created         = models.DateTimeField(auto_now=True)
+    image           = models.ImageField(upload_to='Candidate_profile/', blank=True, null=True)
+    job_name        = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
         return self.name

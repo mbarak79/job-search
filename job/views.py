@@ -16,9 +16,11 @@ from django.shortcuts import get_object_or_404
 def home(request):
     jobs = Job.objects.all()
     companies = Companie.objects.all()
+    candidates = Candidate.objects.all()
     context = {
         'jobs': jobs,
-        'companies': companies
+        'companies': companies,
+        'candidates': candidates
     }
     return render(request, 'job/index.html', context)
 
