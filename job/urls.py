@@ -1,5 +1,9 @@
 from django.urls import path
 from .views import job_list, job_details, home, add_job, upload_resume
+
+from . import api
+
+
  
 
 app_name = 'job'
@@ -11,6 +15,11 @@ urlpatterns = [
     path('upload_resume/', upload_resume, name='upload_resume'),
     path('add_job', add_job, name='add_job'),
     path('<str:slug>', job_details, name='job_details'),
+
+
+    path('api/jobs',api.job_list_api , name='job_list_api'),
+
+    
     
 
 ]

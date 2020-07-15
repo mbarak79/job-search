@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     "bootstrap4",
     'django_filters',
 
+    'rest_framework',
+
 
 ]
 
@@ -59,6 +61,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
 
 ROOT_URLCONF = 'src.urls'
 

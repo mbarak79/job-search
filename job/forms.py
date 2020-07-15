@@ -12,8 +12,7 @@ class JobForm(forms.ModelForm):
 
     class Meta:
         model = Job
-        fields = ['title', 'description', 'job_type', 'vacancy',
-            'salary', 'experience', 'image', 'city']
+        fields = ['title', 'description', 'job_type', 'vacancy','salary', 'experience', 'image', 'city']
 
 
 class ResumeForm(forms.ModelForm):
