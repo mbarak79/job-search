@@ -14,10 +14,11 @@ urlpatterns = [
     path('jobs/', job_list, name='home'),
     path('upload_resume/', upload_resume, name='upload_resume'),
     path('add_job', add_job, name='add_job'),
-    path('<str:slug>', job_details, name='job_details'),
+    path('<slug:slug>', job_details, name='job_details'),
 
 
-    path('api/jobs',api.job_list_api , name='job_list_api'),
+
+    path('api/jobs',api.JobApi.as_view() , name='job_list_api'),
 
     
     

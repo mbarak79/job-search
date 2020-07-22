@@ -3,12 +3,14 @@ from django.shortcuts import render
 from django.views.generic import ListView,  DetailView, TemplateView
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from .models import Job, Candidate, Resume, Companie
+from .models import *
 from .forms import JobForm, ResumeForm, JobSearchForm
 from django.contrib import messages
 from django.db.models import Q
 from .filters import JobFilter
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+
 
 
 
@@ -17,12 +19,20 @@ def home(request):
     jobs = Job.objects.all()
     companies = Companie.objects.all()
     candidates = Candidate.objects.all()
+    caregories = Category.objects.all()
+    
+
     context = {
         'jobs': jobs,
         'companies': companies,
-        'candidates': candidates
+        'candidates': candidates,
+        'caregories': caregories,
+        
     }
     return render(request, 'job/index.html', context)
+
+
+
 
 
 def job_list(request):
@@ -42,13 +52,16 @@ def job_list(request):
 
 
 def job_details(request, slug):
-    job_list = Job.objects.get(slug = slug)
+    job_list = Job.objects.get(slug=slug)
     if request.method == 'POST':
         form = ResumeForm(request.POST, request.FILES)
         if form.is_valid():
             my_form = form.save(commit=False)
             my_form.job = job_list
             my_form = form.save()
+            form = ResumeForm()
+
+            return redirect('/')
 
     else:
         form = ResumeForm()
@@ -92,14 +105,13 @@ def upload_resume(request):
     resume = Resume.objects.all()
     if request.method == 'POST':
         form = ResumeForm(request.POST, request.FILES)
-        print('done')
         if form.is_valid():
             resume_form = form.save(commit=False)
             resume_form.resume = resume
             resume_form = form.save()
-            messages.success(request, "Resume Added")
+            form = ResumeForm()
 
-            return redirect('/')
+            return redirect('home')
             
     
     else:
@@ -111,7 +123,7 @@ def upload_resume(request):
         'form': form
     }
     return render(request, 'job/upload_resume.html', context)
-    
+
 
 
 
